@@ -1,0 +1,6 @@
+# Normalize line endings: LF in the repo and in working copies (matches .editorconfig).
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.png binary
+*.pfx binary
