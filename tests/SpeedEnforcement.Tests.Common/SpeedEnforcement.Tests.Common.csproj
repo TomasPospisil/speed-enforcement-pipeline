@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SpeedEnforcement.Tests.Common</RootNamespace>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\SpeedEnforcement.Contracts\SpeedEnforcement.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\SpeedEnforcement.Processor.Domain\SpeedEnforcement.Processor.Domain.csproj" />
+    <ProjectReference Include="..\..\src\SpeedEnforcement.Client.Core\SpeedEnforcement.Client.Core.csproj" />
+  </ItemGroup>
+</Project>

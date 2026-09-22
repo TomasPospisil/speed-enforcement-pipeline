@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package speedenforcement.telemetry.v1;
+
+option csharp_namespace = "SpeedEnforcement.Contracts.Telemetry.V1";
+
+// Ingest side of the pipeline: Generator -> Processor.
+// Client streaming: the generator keeps one stream open for its whole lifetime and writes one
+// TelemetryMessage per (vehicle, camera). The server answers once, when the stream is completed.
+service TelemetryIngest {
+  rpc Ingest (stream TelemetryMessage) returns (IngestSummary);
+}
+
+message TelemetryMessage {
+  string number_plate    = 1; // unique per vehicle within a generator run
+  int64  timestamp_ticks = 2; // DateTime.UtcNow.Ticks at capture time
+  float  current_speed   = 3; // km/h, instantaneous speed at this camera
+  int32  camera_id       = 4; // 1..10, cameras are passed in ascending order
+}
+
+message IngestSummary {
+  int64 accepted = 1;
+  int64 rejected = 2;
+}

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SpeedEnforcement.Contracts</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" />
+    <PackageReference Include="Grpc.Net.Client" />
+    <PackageReference Include="Grpc.Tools" PrivateAssets="all" />
+  </ItemGroup>
+  <ItemGroup>
+    <!--
+      GrpcServices="Both" generates the client (used by Generator) and the server base (used by
+      Processor.Host) into this one assembly. Trade-off accepted for the prototype: each consumer
+      carries the half it does not use. The clean split is GrpcServices="None" here plus per-project
+      <Protobuf ... GrpcServices="Client|Server" /> references to the same .proto.
+    -->
+    <Protobuf Include="Protos\telemetry.proto" GrpcServices="Both" />
+  </ItemGroup>
+</Project>

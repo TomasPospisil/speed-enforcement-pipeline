@@ -1,0 +1,29 @@
+services:
+  processor:
+    build:
+      context: .
+      dockerfile: src/SpeedEnforcement.Processor.Host/Dockerfile
+    image: speedenforcement/processor:local
+    ports:
+      - "5000:5000"   # REST + health + OpenAPI (HTTP/1.1 and HTTP/2)
+      - "5001:5001"   # gRPC ingest (HTTP/2 cleartext, h2c)
+    environment:
+      DOTNET_ENVIRONMENT: Development
+      Ingestion__PartitionCount: "4"
+      Ingestion__ChannelCapacity: "10000"
+    # No HEALTHCHECK on purpose: the aspnet base image ships without curl/wget and
+    # Kubernetes uses httpGet probes against /health/live and /health/ready anyway.
+
+  # Optional: run the generator in Docker too:  docker compose --profile generator up
+  # Default is to run it on the host with `dotnet run` against localhost:5001.
+  generator:
+    profiles: ["generator"]
+    build:
+      context: .
+      dockerfile: src/SpeedEnforcement.Generator/Dockerfile
+    image: speedenforcement/generator:local
+    environment:
+      DOTNET_ENVIRONMENT: Development
+      Generator__ProcessorAddress: "http://processor:5001"
+    depends_on:
+      - processor

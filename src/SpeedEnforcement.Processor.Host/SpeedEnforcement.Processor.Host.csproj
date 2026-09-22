@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <RootNamespace>SpeedEnforcement.Processor.Host</RootNamespace>
+    <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="OpenTelemetry.Extensions.Hosting" />
+    <PackageReference Include="OpenTelemetry.Exporter.Console" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpeedEnforcement.Contracts\SpeedEnforcement.Contracts.csproj" />
+    <ProjectReference Include="..\SpeedEnforcement.Processor.Domain\SpeedEnforcement.Processor.Domain.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SpeedEnforcement.Processor.UnitTests" />
+    <InternalsVisibleTo Include="SpeedEnforcement.Processor.IntegrationTests" />
+  </ItemGroup>
+</Project>

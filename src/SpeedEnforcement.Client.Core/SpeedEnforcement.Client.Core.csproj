@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SpeedEnforcement.Client.Core</RootNamespace>
+  </PropertyGroup>
+  <!--
+    No WPF reference on purpose: view models, polling and the API client are plain .NET so they run in
+    unit tests without a UI thread. The WPF project supplies IUiDispatcher and the views.
+  -->
+  <ItemGroup>
+    <PackageReference Include="CommunityToolkit.Mvvm" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" />
+    <PackageReference Include="Microsoft.Extensions.Http" />
+    <PackageReference Include="Microsoft.Extensions.Http.Resilience" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SpeedEnforcement.Contracts\SpeedEnforcement.Contracts.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="SpeedEnforcement.Client.UnitTests" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <RootNamespace>SpeedEnforcement.Processor.Domain</RootNamespace>
+  </PropertyGroup>
+  <!-- Deliberately no package or project references: pure domain, unit-testable in isolation. -->
+  <ItemGroup>
+    <InternalsVisibleTo Include="SpeedEnforcement.Processor.UnitTests" />
+  </ItemGroup>
+</Project>
